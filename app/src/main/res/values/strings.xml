@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PopularMovies</string>
+    <string name="settings">Settings</string>
+    <string name="pref_sort_order_popular_label">Popular</string>
+    <string name="pref_sort_order_top_rated_label">Top rated</string>
+
+    <string name="pref_sort_order_top_rated_value">top_rated</string>
+    <string name="pref_sort_order_popular_value">popular</string>
+    <string name="pref_sort_order_default">popular</string>
+    <string name="pref_sort_order_key">sort_order</string>
+    <string name="pref_sort_order_label">Sort order</string>
+    <string name="error_message">An error has occured.</string>
+    <string name="reloading_message">Reloading</string>
+</resources>
