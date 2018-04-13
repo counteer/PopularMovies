@@ -30,6 +30,8 @@ import org.json.JSONObject;
 public final class MovieDBJsonUtils {
 
 
+    private static final String NOT_AVAILABLE = "N/A";
+
     public static MovieData[] getSimpleMovieStringsFromJson(Context context, String forecastJsonStr)
             throws JSONException {
 
@@ -66,9 +68,9 @@ public final class MovieDBJsonUtils {
             JSONException {
         final String POSTER = "poster_path";
         double voteAvarage = actualMovie.optDouble("vote_average", 0.0);
-        String title = actualMovie.optString("title", "N/A");
-        String releaseDate = actualMovie.optString("release_date", "N/A");
-        String synopsis = actualMovie.optString("overview", "N/A");
+        String title = actualMovie.optString("title", NOT_AVAILABLE);
+        String releaseDate = actualMovie.optString("release_date", NOT_AVAILABLE);
+        String synopsis = actualMovie.optString("overview", NOT_AVAILABLE);
         String poster = actualMovie.getString(POSTER);
 
 
