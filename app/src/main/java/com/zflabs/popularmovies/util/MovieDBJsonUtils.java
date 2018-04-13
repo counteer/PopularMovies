@@ -9,9 +9,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Utility functions to handle OpenWeatherMap JSON data.
- */
 public final class MovieDBJsonUtils {
 
 

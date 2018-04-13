@@ -195,7 +195,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onDestroy() {
         super.onDestroy();
 
-        /* Unregister MainActivity as an OnPreferenceChangedListener to avoid any memory leaks. */
         PreferenceManager.getDefaultSharedPreferences(this)
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
