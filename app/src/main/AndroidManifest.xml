@@ -27,6 +27,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <provider
+            android:authorities="com.zflabs.popularmovies"
+            android:name="com.zflabs.popularmovies.data.CachedMovieContentProvider"
+            android:exported="false">
+        </provider>
     </application>
 
 </manifest>
