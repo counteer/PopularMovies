@@ -11,15 +11,14 @@ import org.json.JSONObject;
 
 public final class MovieDBJsonUtils {
 
+    private static final String RESULT_LIST = "results";
 
     private static final String NOT_AVAILABLE = "N/A";
 
     public static MovieData[] getSimpleMovieStringsFromJson(Context context, String forecastJsonStr)
             throws JSONException {
 
-        final String RESULT_LIST = "results";
-
-        MovieData[] movieDataCollection = null;
+        MovieData[] movieDataCollection;
 
         JSONObject moviesJson = new JSONObject(forecastJsonStr);
 
@@ -31,7 +30,7 @@ public final class MovieDBJsonUtils {
             JSONObject actualMovie = moviesArray.getJSONObject(i);
 
             MovieData movieData = extractMovieDataFromJson(actualMovie);
-            movieDataCollection[i] =  movieData;
+            movieDataCollection[i] = movieData;
         }
 
         return movieDataCollection;
@@ -54,9 +53,40 @@ public final class MovieDBJsonUtils {
         String releaseDate = actualMovie.optString("release_date", NOT_AVAILABLE);
         String synopsis = actualMovie.optString("overview", NOT_AVAILABLE);
         String poster = actualMovie.getString(POSTER);
+        int outerId = actualMovie.optInt("id", -1);
+        int id = actualMovie.optInt("_id", -1);
+        String video = actualMovie.optString("video", "");
+        String review = actualMovie.optString("review", "");
 
-
-        MovieData movieData = new MovieData(title, releaseDate, poster, voteAvarage, synopsis);
+        MovieData movieData = new MovieData(outerId, title, releaseDate, poster, voteAvarage, synopsis);
+        movieData.setId(id);
+        movieData.setVideo(video);
+        movieData.setReview(review);
         return movieData;
+    }
+
+    public static String getVideoUrlFromTrailerJson(String json) throws JSONException {
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray result = jsonObject.getJSONArray(RESULT_LIST);
+        String result2;
+        for (int i = 0; i < result.length(); ++i) {
+            JSONObject jsonObject1 = result.getJSONObject(i);
+            result2 = jsonObject1.getString("key");
+            return result2;
+        }
+        return null;
+    }
+
+    public static String getReviewFromReviewJson(String json) throws JSONException {
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray result = jsonObject.getJSONArray(RESULT_LIST);
+        String result2 = "";
+        for (int i = 0; i < result.length(); ++i) {
+            JSONObject jsonObject1 = result.getJSONObject(i);
+            String author = jsonObject1.getString("author");
+            String content = jsonObject1.getString("content");
+            result2 = author + ": \n" + content + "\n";
+        }
+        return result2;
     }
 }

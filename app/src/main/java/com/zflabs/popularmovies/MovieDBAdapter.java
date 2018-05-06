@@ -13,8 +13,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.zflabs.popularmovies.util.NetworkUtils;
 
-public class MovieDBAdapter extends Adapter<MovieDBAdapter.MovieAdapterViewHolder>
-        {
+public class MovieDBAdapter extends Adapter<MovieDBAdapter.MovieAdapterViewHolder> {
 
     private MovieData[] movieData;
 
