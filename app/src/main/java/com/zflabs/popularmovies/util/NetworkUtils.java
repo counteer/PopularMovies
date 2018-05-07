@@ -35,7 +35,7 @@ public final class NetworkUtils {
 
     public static URL buildUrl(String order, String apiKey) {
         String sortPath;
-        if(order.equals("popular")){
+        if (order.equals("popular")) {
             sortPath = POPULAR_PATH;
         } else {
             sortPath = TOP_RATED_PATH;
@@ -66,13 +66,13 @@ public final class NetworkUtils {
         return url;
     }
 
-    public static String buildImageUrl(String poster){
+    public static String buildImageUrl(String poster) {
         StringBuilder builtUri = new StringBuilder();
         builtUri.append(IMAGE_BASE_URL).append(IMAGE_SIZE_PATH).append(poster);
         return builtUri.toString();
     }
 
-    public static URL buildReviewsUrl(int movieId, String apiKey){
+    public static URL buildReviewsUrl(int movieId, String apiKey) {
         Uri build = Uri.parse(BASE_URL).buildUpon()
                 .appendPath(MOVIE_PATH)
                 .appendPath(Integer.toString(movieId))
@@ -81,7 +81,7 @@ public final class NetworkUtils {
         return convertUriToURL(build);
     }
 
-    public static URL buildTrailerUrl(int movieId, String apiKey){
+    public static URL buildTrailerUrl(int movieId, String apiKey) {
         Uri build = Uri.parse(BASE_URL).buildUpon()
                 .appendPath(MOVIE_PATH)
                 .appendPath(Integer.toString(movieId))
@@ -93,7 +93,7 @@ public final class NetworkUtils {
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try (InputStream in = urlConnection.getInputStream();
-            Scanner scanner = new Scanner(in);) {
+             Scanner scanner = new Scanner(in);) {
 
             scanner.useDelimiter("\\A");
 

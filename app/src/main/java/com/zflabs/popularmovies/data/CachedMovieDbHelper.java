@@ -10,7 +10,7 @@ public class CachedMovieDbHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "cachedMovie.db";
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 1;
 
     public CachedMovieDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -18,9 +18,9 @@ public class CachedMovieDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        final String CREATE_TABLE = "CREATE TABLE "+
+        final String CREATE_TABLE = "CREATE TABLE " +
                 CachedMovieEntry.TABLE_NAME + " (" +
-                "_id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "_id" + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CachedMovieEntry.COLUMN_MOVIE_TITLE + " TEXT NOT NULL, " +
                 CachedMovieEntry.COLUMN_MOVIE_POSTER + " TEXT NOT NULL, " +
                 CachedMovieEntry.COLUMN_RELEASE_DATE + " TEXT NOT NULL, " +

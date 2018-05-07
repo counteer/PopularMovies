@@ -8,7 +8,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 
-public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceChangeListener{
+public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceChangeListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     private void setPreferenceSummary(Preference preference, String value) {
         ListPreference listPreference = (ListPreference) preference;
         int preferenceIndex = listPreference.findIndexOfValue(value);
-        if(preferenceIndex>=0){
+        if (preferenceIndex >= 0) {
             listPreference.setSummary(listPreference.getEntries()[preferenceIndex]);
         }
     }

@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             String releaseDate = result.getString(4);
             Double voteAverage = result.getDouble(5);
             int outerId = result.getInt(6);
-            String  trailer = result.getString(7);
+            String trailer = result.getString(7);
             String review = result.getString(8);
 
             MovieData data = new MovieData(outerId, title, releaseDate, poster, voteAverage, synopsis);

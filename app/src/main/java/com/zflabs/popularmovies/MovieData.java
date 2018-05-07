@@ -99,8 +99,8 @@ public class MovieData {
         return synopsis;
     }
 
-    public String toJSON(){
-        JSONObject jsonObject= new JSONObject();
+    public String toJSON() {
+        JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("_id", id);
             jsonObject.put("title", title);

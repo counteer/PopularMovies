@@ -59,7 +59,6 @@ public class MovieDBAdapter extends Adapter<MovieDBAdapter.MovieAdapterViewHolde
     public void onBindViewHolder(MovieAdapterViewHolder movieAdapterViewHolder, int position) {
         Context context = movieAdapterViewHolder.imageView.getContext();
         String path = NetworkUtils.buildImageUrl(movieData[position].getPoster());
-        Log.i("ADAPTER", path);
         Picasso.with(context).load(path).into(movieAdapterViewHolder.imageView);
     }
 

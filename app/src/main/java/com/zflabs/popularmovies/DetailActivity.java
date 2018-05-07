@@ -72,7 +72,6 @@ public class DetailActivity extends AppCompatActivity {
 
     public void onClick(View textView) {
         if (textView.getId() == favorite.getId()) {
-//            getSupportLoaderManager().restartLoader(MOVIE_LIST_LOADER_ID, null, this);
             if (isFavorite()) {
                 removeFromFavorite();
                 Toast.makeText(this, R.string.remove_from_favorites, Toast.LENGTH_SHORT).show();
@@ -83,15 +82,17 @@ public class DetailActivity extends AppCompatActivity {
                 favorite.setText("-");
             }
         } else if (textView.getId() == trailerView.getId()) {
-
+            if(movieData.getVideo()== null || "".equals(movieData.getVideo())){
+                return;
+            }
             Context context = getApplicationContext();
             Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + movieData.getVideo()));
-            Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://www.youtube.com/watch?v=" + movieData.getVideo()));
             try {
                 context.startActivity(appIntent);
             } catch (ActivityNotFoundException ex) {
-                context.startActivity(webIntent);
+                appIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://www.youtube.com/watch?v=" + movieData.getVideo()));
+                context.startActivity(appIntent);
             }
         }
     }
@@ -106,10 +107,7 @@ public class DetailActivity extends AppCompatActivity {
         initialValues.put(CachedMovieEntry.COLUMN_OUTER_ID, movieData.getOuterId());
         initialValues.put(CachedMovieEntry.COLUMN_TRAILER, movieData.getVideo());
         initialValues.put(CachedMovieEntry.COLUMN_REVIEW, movieData.getReview());
-        Uri uri = getContentResolver().insert(CachedMovieContract.BASE_CONTENT_URI, initialValues);
-        if (uri != null) {
-
-        }
+        getContentResolver().insert(CachedMovieContract.BASE_CONTENT_URI, initialValues);
     }
 
     private boolean removeFromFavorite() {

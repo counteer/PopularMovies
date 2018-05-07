@@ -11,21 +11,18 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-/**
- * Created by zoli on 2018.04.16..
- */
-
 public class CachedMovieContentProvider extends ContentProvider {
 
     private CachedMovieDbHelper dbHelper;
 
     public static final int MOVIES = 100;
 
-    public static UriMatcher buildUriMatcher(){
+    public static UriMatcher buildUriMatcher() {
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI("com.zflabs.popularmovies", null, MOVIES);
         return uriMatcher;
     }
+
     private static final UriMatcher sUriMatcher = buildUriMatcher();
 
 
@@ -76,7 +73,7 @@ public class CachedMovieContentProvider extends ContentProvider {
         switch (match) {
             case MOVIES:
                 long id = db.insert(CachedMovieContract.CachedMovieEntry.TABLE_NAME, null, contentValues);
-                if ( id > 0 ) {
+                if (id > 0) {
                     returnUri = ContentUris.withAppendedId(CachedMovieContract.CONTENT_URI, id);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
