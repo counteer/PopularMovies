@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/detail_top">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -65,15 +66,10 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/trailer_view"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_trailers"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:gravity="center"
-            android:onClick="onClick"
-            android:text="@string/trailer_view_text"
-            android:textSize="32sp" />
+            android:layout_height="match_parent"/>
 
         <TextView
             android:id="@+id/reviews_view"

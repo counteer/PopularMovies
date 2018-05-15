@@ -9,6 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.StringJoiner;
+
 public final class MovieDBJsonUtils {
 
     private static final String RESULT_LIST = "results";
@@ -68,13 +70,25 @@ public final class MovieDBJsonUtils {
     public static String getVideoUrlFromTrailerJson(String json) throws JSONException {
         JSONObject jsonObject = new JSONObject(json);
         JSONArray result = jsonObject.getJSONArray(RESULT_LIST);
-        String result2;
+        String[] videos = new String[result.length()];
         for (int i = 0; i < result.length(); ++i) {
             JSONObject jsonObject1 = result.getJSONObject(i);
-            result2 = jsonObject1.getString("key");
-            return result2;
+            videos[i] = jsonObject1.getString("key");
         }
-        return null;
+        return convertTrailerArrayToString(videos);
+    }
+
+    private static String convertTrailerArrayToString(String[] videos) {
+        StringBuilder result = new StringBuilder();
+        for(String video :videos ){
+            result.append(video).append(",");
+        }
+        result.setLength(result.length()-1);
+        return result.toString();
+    }
+
+    public static String[] convertStringToTrailerArray(String trailers){
+        return trailers.split(",");
     }
 
     public static String getReviewFromReviewJson(String json) throws JSONException {

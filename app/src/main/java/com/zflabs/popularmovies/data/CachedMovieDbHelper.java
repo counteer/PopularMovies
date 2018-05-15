@@ -10,7 +10,7 @@ public class CachedMovieDbHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "cachedMovie.db";
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 4;
 
     public CachedMovieDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
