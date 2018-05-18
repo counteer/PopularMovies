@@ -27,6 +27,9 @@ import com.zflabs.popularmovies.util.NetworkUtils;
 
 import java.net.URL;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<MovieData[]>,
         MovieDBAdapter.MovieAdapterClickHandler, SharedPreferences.OnSharedPreferenceChangeListener,
         Preference.OnPreferenceChangeListener {
@@ -35,11 +38,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private MovieDBAdapter movieDBAdapter;
 
-    private RecyclerView recyclerView;
+    @BindView(R.id.rvMovies)
+    RecyclerView recyclerView;
 
-    private TextView mErrorMessageDisplay;
+    @BindView(R.id.tv_error_message_display)
+    TextView mErrorMessageDisplay;
 
-    private ProgressBar mLoadingIndicator;
+    @BindView(R.id.pb_loading_indicator)
+    ProgressBar mLoadingIndicator;
 
     private static String API_KEY;
 
@@ -50,11 +56,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         API_KEY = BuildConfig.ApiKey;
         int loaderId = MOVIE_LIST_LOADER_ID;
-        recyclerView = (RecyclerView) findViewById(R.id.rvMovies);
-        mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
-        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         movieDBAdapter = new MovieDBAdapter(this);
         recyclerView.setAdapter(movieDBAdapter);

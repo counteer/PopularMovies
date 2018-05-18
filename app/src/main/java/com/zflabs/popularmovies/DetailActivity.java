@@ -21,16 +21,27 @@ import com.zflabs.popularmovies.data.CachedMovieContract.CachedMovieEntry;
 import com.zflabs.popularmovies.util.MovieDBJsonUtils;
 import com.zflabs.popularmovies.util.NetworkUtils;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity implements TrailerAdapter.TrailerAdapterClickHandler {
 
-    private ImageView imageView;
-    private TextView synopsisTV;
-    private TextView titleTV;
-    private TextView releaseDateTV;
-    private TextView ratingTV;
-    private TextView favorite;
-    private RecyclerView trailerView;
-    private TextView review;
+    @BindView(R.id.detail_image)
+    ImageView imageView;
+    @BindView(R.id.synopsis)
+    TextView synopsisTV;
+    @BindView(R.id.movie_title)
+    TextView titleTV;
+    @BindView(R.id.movie_release_date)
+    TextView releaseDateTV;
+    @BindView(R.id.movie_rating)
+    TextView ratingTV;
+    @BindView(R.id.add_favorite)
+    TextView favorite;
+    @BindView(R.id.rv_trailers)
+    RecyclerView trailerView;
+    @BindView(R.id.reviews_view)
+    TextView review;
 
     private MovieData movieData;
     private TrailerAdapter trailerAdapter;
@@ -39,16 +50,9 @@ public class DetailActivity extends AppCompatActivity implements TrailerAdapter.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        ButterKnife.bind(this);
         Intent intentThatStartedThisActivity = getIntent();
-        trailerView = (RecyclerView) findViewById(R.id.rv_trailers);
         trailerView.setLayoutManager(new GridLayoutManager(this, 1));
-        imageView = (ImageView) findViewById(R.id.detail_image);
-        synopsisTV = (TextView) findViewById(R.id.synopsis);
-        titleTV = (TextView) findViewById(R.id.movie_title);
-        releaseDateTV = (TextView) findViewById(R.id.movie_release_date);
-        ratingTV = (TextView) findViewById(R.id.movie_rating);
-        favorite = (TextView) findViewById(R.id.add_favorite);
-        review = (TextView) findViewById(R.id.reviews_view);
         if (intentThatStartedThisActivity != null && intentThatStartedThisActivity.hasExtra(Intent.EXTRA_TEXT)) {
             String movie = intentThatStartedThisActivity.getStringExtra(Intent.EXTRA_TEXT);
             MovieData movieData = MovieDBJsonUtils.extractMovieDataFromString(movie);
